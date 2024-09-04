@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anaumaker</title>
+    <script>
+        function anaume() {
+            const text = document.getElementById('text').value;
+            if(text !== '') {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/api/anaume');
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                xhr.onload = () => {
+                    const anaume_element = document.getElementById("anaume_text");
+                    anaume_element.innerText = xhr.responseText;
+                };
+
+                xhr.send(`text=${encodeURIComponent(text)}`);
+            }
+            else {
+                alert('文字を入力して下さい');
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Anaumaker</h1>
+        <a href="https://taku910.github.io/mecab/" target="_blank" rel="noopener noreferrer">MeCab</a>
+        <a href="https://github.com/manaken0522/anaumaker" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </header>
+    <textarea name="text" id="text" cols="100" rows="10" placeholder="穴埋めしたい文字列を入力"></textarea>
+    <br>
+    <button onclick="anaume();">穴埋め</button>
+    <div id="anaume_text"></div>
+</body>
+</html>
