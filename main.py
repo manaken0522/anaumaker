@@ -1,8 +1,6 @@
 import MeCab
 import random
-from flask import Flask
-from flask import render_template
-from flask import request
+from flask import Flask, jsonify, render_template, request
 
 app = Flask(__name__)
 
@@ -12,7 +10,11 @@ def index():
 
 @app.route("/api/anaume", methods=["POST"])
 def api_anaume():
-    return anaume(request.form["text"])
+    result = ""
+    for i in range(int(request.form["make_count"])):
+        result += anaume(request.form["text"]) + "\n"
+
+    return jsonify({"text": request.form["text"], "result": result})
 
 def anaume(text: str):
     tagger = MeCab.Tagger()

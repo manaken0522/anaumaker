@@ -34,9 +34,12 @@
         <p>形態素解析エンジン(MeCab)を利用して穴埋め問題を作成します</p>
         <textarea name="text" id="text" cols="100" rows="10" placeholder="穴埋めしたい文字列を入力"></textarea>
         <br>
+        <label for="make_count">作成する回数</label>
+        <input type="number" name="make_count" id="make_count" value="1">
+        <br>
         <button class="btn btn-primary" onclick="anaume();">作成</button>
         <br>
-        <span id="anaume_text"></span>
+        <span id="result"></span>
     </div>
 </body>
 </html>
